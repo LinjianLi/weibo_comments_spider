@@ -8,7 +8,7 @@
 import scrapy
 
 
-class WeiboCommentsItem(scrapy.Item):
+class WeiboCommentsSpiderItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     topic = scrapy.Field()      # 微博话题

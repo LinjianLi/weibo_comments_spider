@@ -1,7 +1,7 @@
 import time
 import json
 from scrapy import Spider, Request
-from weibo_comments.items import WeiboCommentsItem
+from weibo_comments_spider.items import WeiboCommentsSpiderItem
 
 
 class WeiboCommentsRepliesSpider(Spider):
@@ -166,7 +166,7 @@ class WeiboCommentsRepliesSpider(Spider):
             if 'data' in result.keys():
                 for single_comment in result['data']:
                     # 项目的“comment”指的是评论，但新浪微博的代码中的“comments”指的是评论下面的回复
-                    item = WeiboCommentsItem()
+                    item = WeiboCommentsSpiderItem()
                     item['topic'] = topic
                     item['content'] = content
                     item['comment'] = single_comment.get('text')
