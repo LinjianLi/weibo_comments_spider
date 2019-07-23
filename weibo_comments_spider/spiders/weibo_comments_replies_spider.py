@@ -186,8 +186,11 @@ class WeiboCommentsRepliesSpider(Spider):
                     item['comment'] = single_comment.get('text')
                     if single_comment['more_info_type'] == 1:
                         top1_reply = single_comment.get('comments')[0]
-                        item['reply'] = top1_reply.get('text')
-                        replier_id = top1_reply['user']['id']
+                        if top1_reply:
+                            item['reply'] = top1_reply.get('text')
+                            replier_id = top1_reply['user']['id']
+                        else:
+                            replier_id = ''
                     elif single_comment['more_info_type'] == 2:
                         s_c_id = single_comment['id']
                         replies = requests.get(url=self.folded_replies_url.format(cid=s_c_id),
